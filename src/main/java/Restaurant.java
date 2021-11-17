@@ -1,7 +1,9 @@
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Restaurant {
     private String name;
@@ -9,6 +11,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private Map<String, Integer> itemMap = new HashMap<String, Integer>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -42,6 +45,7 @@ public class Restaurant {
     public void addToMenu(String name, int price) {
         Item newItem = new Item(name,price);
         menu.add(newItem);
+        itemMap.put(name, price);
     }
     
     public void removeFromMenu(String itemName) throws itemNotFoundException {
@@ -51,6 +55,7 @@ public class Restaurant {
             throw new itemNotFoundException(itemName);
 
         menu.remove(itemToBeRemoved);
+        itemMap.remove(itemName);
     }
     public void displayDetails(){
         System.out.println("Restaurant:"+ name + "\n"
@@ -65,4 +70,13 @@ public class Restaurant {
         return name;
     }
 
+
+    public int calculateOrderTotal(List<String> selectedItems) {
+        int totalAmount = 0;
+        for(String itemName: selectedItems){
+            totalAmount = totalAmount + itemMap.get(itemName);
+        }
+        return totalAmount;
+
+    }
 }

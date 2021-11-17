@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -84,7 +85,12 @@ class RestaurantTest {
 
     @Test
     public void when_item_selected_total_amount_should_be_returned(){
-        List<String> selectedItems = null;
+        List<String> selectedItems = new ArrayList<>();
+        selectedItems.add("Sweet corn soup");
+        selectedItems.add("Vegetable lasagne");
         int orderValue = restaurant.calculateOrderTotal(selectedItems);
+
+        assertEquals(388, orderValue);
+
     }
 }
