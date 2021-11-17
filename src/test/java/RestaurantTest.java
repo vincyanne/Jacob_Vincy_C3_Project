@@ -80,4 +80,10 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void when_item_selected_total_amount_should_be_returned(){
+        List<String> selectedItems = null;
+        int orderValue = restaurant.calculateOrderTotal(selectedItems);
+    }
 }
